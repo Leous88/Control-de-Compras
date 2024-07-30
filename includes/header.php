@@ -7,4 +7,5 @@
     <title>Compras Públicas</title>
 </head>
 <body>
-<?php include 'menu.php'; ?>
+<?php include dirname(__FILE__, 2) . '/menu.php'; ?>
+

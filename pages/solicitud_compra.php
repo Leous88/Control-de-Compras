@@ -9,8 +9,19 @@ include '../includes/db.php';
         <fieldset>
             <legend>Datos del Solicitante</legend>
             
+            <label for="numero_solicitud">Número de Solicitud:</label>
+            <input type="text" id="numero_solicitud" name="numero_solicitud" required>
+            
             <label for="solicitante">Nombre del Solicitante:</label>
-            <input type="text" id="solicitante" name="solicitante" required>
+            <select id="solicitante" name="solicitante" required>
+                <?php
+                // Obtener la lista de funcionarios
+                $result = $conn->query("SELECT id, nombre FROM funcionarios");
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value=\"{$row['id']}\">{$row['nombre']}</option>";
+                }
+                ?>
+            </select>
             
             <label for="fecha">Fecha de la Solicitud:</label>
             <input type="date" id="fecha" name="fecha" required>
@@ -47,13 +58,14 @@ include '../includes/db.php';
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Datos de la solicitud
-        $solicitante = $_POST['solicitante'];
+        $numero_solicitud = $_POST['numero_solicitud'];
+        $solicitante_id = $_POST['solicitante']; // ID del solicitante
         $fecha = $_POST['fecha'];
         $unidad = $_POST['unidad'];
         $origen = $_POST['origen'];
         
         // Insertar en la tabla solicitud_compra
-        $sql = "INSERT INTO solicitud_compra (solicitante, fecha, unidad, origen) VALUES ('$solicitante', '$fecha', '$unidad', '$origen')";
+        $sql = "INSERT INTO solicitud_compra (numero_solicitud, solicitante_id, fecha, unidad, origen) VALUES ('$numero_solicitud', '$solicitante_id', '$fecha', '$unidad', '$origen')";
         
         if ($conn->query($sql) === TRUE) {
             $solicitud_id = $conn->insert_id;
