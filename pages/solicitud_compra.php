@@ -69,7 +69,8 @@ include '../includes/db.php';
         $fecha_recepcion = $_POST['fecha_recepcion'];
         
         // Insertar en la tabla solicitud_compra
-        $sql = "INSERT INTO solicitud_compra (numero_solicitud, solicitante_id, fecha, unidad, origen, fecha_recepcion) VALUES ('$numero_solicitud', '$solicitante_id', '$fecha', '$unidad', '$origen', '$fecha_recepcion')";
+        $sql = "INSERT INTO solicitud_compra (numero_solicitud, solicitante_id, fecha, unidad, origen, fecha_recepcion) 
+                VALUES ('$numero_solicitud', '$solicitante_id', '$fecha', '$unidad', '$origen', '$fecha_recepcion')";
         
         if ($conn->query($sql) === TRUE) {
             $solicitud_id = $conn->insert_id;
