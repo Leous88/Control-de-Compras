@@ -34,6 +34,9 @@ include '../includes/db.php';
                 <option value="presupuesto_salud">Presupuesto Salud</option>
                 <option value="convenio">Convenio</option>
             </select>
+
+            <label for="fecha_recepcion">Fecha de Recepción:</label>
+            <input type="date" id="fecha_recepcion" name="fecha_recepcion" value="<?php echo date('Y-m-d'); ?>">
         </fieldset>
         
         <fieldset>
@@ -59,13 +62,14 @@ include '../includes/db.php';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Datos de la solicitud
         $numero_solicitud = $_POST['numero_solicitud'];
-        $solicitante_id = $_POST['solicitante']; // ID del solicitante
+        $solicitante_id = $_POST['solicitante'];
         $fecha = $_POST['fecha'];
         $unidad = $_POST['unidad'];
         $origen = $_POST['origen'];
+        $fecha_recepcion = $_POST['fecha_recepcion'];
         
         // Insertar en la tabla solicitud_compra
-        $sql = "INSERT INTO solicitud_compra (numero_solicitud, solicitante_id, fecha, unidad, origen) VALUES ('$numero_solicitud', '$solicitante_id', '$fecha', '$unidad', '$origen')";
+        $sql = "INSERT INTO solicitud_compra (numero_solicitud, solicitante_id, fecha, unidad, origen, fecha_recepcion) VALUES ('$numero_solicitud', '$solicitante_id', '$fecha', '$unidad', '$origen', '$fecha_recepcion')";
         
         if ($conn->query($sql) === TRUE) {
             $solicitud_id = $conn->insert_id;
