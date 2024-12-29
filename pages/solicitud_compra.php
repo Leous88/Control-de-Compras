@@ -2,7 +2,14 @@
 include '../includes/header.php'; 
 include '../includes/db.php'; 
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitudes de Compra</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
 <div class="content">
     <h2>Solicitud de Compra</h2>
     <form action="solicitud_compra.php" method="POST">
